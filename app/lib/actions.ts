@@ -3,6 +3,7 @@
 import { z } from "zod";
 import prisma from "@/app/lib/prisma-client";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const PlayerSchema: z.ZodSchema<any> = z.lazy(() => PlayerActualSchema);
 const CourseSchema: z.ZodSchema<any> = z.lazy(() =>
@@ -57,7 +58,9 @@ export async function createPlayer(
     return "Error creating player.";
   }
   await prisma.player.create({
-    data: validatedFields,
+    data: {
+      name: validatedFields.data.name,
+    },
   });
 }
 
@@ -69,7 +72,6 @@ export async function createCourse(
     name: formData.get("name"),
     numHoles: Number(formData.get("numHoles")),
   });
-  console.log(formData, validatedFields);
   if (!validatedFields.success) {
     return "Error creating Course.";
   }
@@ -84,6 +86,4 @@ export async function createCourse(
     console.log(e);
     return "Error: Database failed creating Course";
   }
-
-  revalidatePath("/");
 }

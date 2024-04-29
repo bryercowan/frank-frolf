@@ -1,6 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
-import { createCourse } from "../lib/actions";
+import { createCourse } from "../../lib/actions";
 export default function AddCourseForm() {
   const [error, dispatch] = useFormState(createCourse, undefined);
   return (
