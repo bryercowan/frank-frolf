@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
-let prisma: PrismaClient | undefined;
+let prisma: PrismaClient;
 
 declare global {
   // Prevent TypeScript errors for global usage
-  var prisma: PrismaClient | undefined;
+  var prisma: PrismaClient;
 }
 
 if (process.env.NODE_ENV === "production") {

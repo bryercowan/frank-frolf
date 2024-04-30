@@ -11,11 +11,13 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="z-10 items-center justify-between font-mono text-sm lg:flex">
         <div className="min-h-screen w-screen flex flex-col items-center justify-center">
           <div className="w-full h-36 text-center">
-            <h1 className="text-2xl">Playing Course: {course.name}</h1>
+            <h1 className="text-5xl">Playing Course: {course.name}</h1>
           </div>
           <div className="grid grid-cols-2 grid-flow-row gap-10 w-full p-10">
             <div className="w-full">
-              <h1 className="text-xl font-semibold mb-4">Select Players</h1>
+              <h1 className="text-3xl font-semibold text-center mb-3">
+                Select Players
+              </h1>
               <Suspense
                 fallback={
                   <SelectSkeleton
@@ -28,7 +30,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               </Suspense>
             </div>
             <div>
-              <AddPlayerForm />
+              <AddPlayerForm params={params} />
             </div>
           </div>
         </div>

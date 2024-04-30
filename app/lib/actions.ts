@@ -3,7 +3,6 @@
 import { z } from "zod";
 import prisma from "@/app/lib/prisma-client";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 const PlayerSchema: z.ZodSchema<any> = z.lazy(() => PlayerActualSchema);
 const CourseSchema: z.ZodSchema<any> = z.lazy(() =>
@@ -48,42 +47,63 @@ const HoleScoreActualSchema = z.object({
 const CreateCourse = CourseActualSchema.omit({ id: true, scorecards: true });
 
 export async function createPlayer(
-  prevState: string | undefined,
+  course_id: string,
+  prevState: any,
   formData: FormData,
 ) {
   const validatedFields = PlayerSchema.safeParse({
     name: formData.get("playerName"),
   });
   if (!validatedFields.success) {
-    return "Error creating player.";
+    return {
+      error: "Error creating Player.",
+    };
   }
-  await prisma.player.create({
-    data: {
-      name: validatedFields.data.name,
-    },
-  });
+  try {
+    const player = await prisma.player.create({
+      data: {
+        name: validatedFields.data.name,
+      },
+    });
+    if (player) {
+      revalidatePath(`/courses/${course_id}`);
+      return { player, success: true };
+    }
+  } catch (e: any) {
+    if (e.code && e.code === "P2002") {
+      return { error: "Error: A course with this name already exists." };
+    } else {
+      console.log(e);
+      return { error: "Error: Database failed creating Course" };
+    }
+  }
 }
 
-export async function createCourse(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+export async function createCourse(prevState: any, formData: FormData) {
   const validatedFields = CourseSchema.safeParse({
     name: formData.get("name"),
     numHoles: Number(formData.get("numHoles")),
   });
   if (!validatedFields.success) {
-    return "Error creating Course.";
+    return { error: "Error creating Course." };
   }
   try {
-    await prisma.course.create({
+    const course = await prisma.course.create({
       data: {
         name: validatedFields.data.name,
         numHoles: validatedFields.data.numHoles,
       },
     });
-  } catch (e) {
-    console.log(e);
-    return "Error: Database failed creating Course";
+    if (course) {
+      revalidatePath(`/`);
+      return { course, success: true };
+    }
+  } catch (e: any) {
+    if (e.code && e.code === "P2002") {
+      return { error: "Error: A course with this name already exists." };
+    } else {
+      console.log(e);
+      return { error: "Error: Database failed creating Course" };
+    }
   }
 }

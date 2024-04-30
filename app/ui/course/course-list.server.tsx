@@ -6,7 +6,7 @@ export default async function CourseListServer() {
   return (
     <>
       <div className="mb-4">
-        <label htmlFor="course" className="mb-2 block text-sm font-medium">
+        <label htmlFor="course" className="mb-2 block text-lg font-medium">
           Choose Course
         </label>
         <CourseSelector courses={courses} />
