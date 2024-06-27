@@ -79,6 +79,54 @@ export async function createPlayer(
   }
 }
 
+export async function createScorecard(courseId: string, formData: FormData) {
+  const players = JSON.parse(formData.get("players") as string);
+  const scores = JSON.parse(formData.get("scores") as string);
+
+  try {
+    const createdScorecards = await Promise.all(
+      players.map(async (player: { id: number; name: string }) => {
+        const validatedFields = ScorecardSchema.safeParse({
+          score: scores[player.id].reduce(
+            (sum: number, score: number) => sum + score,
+            0,
+          ),
+          courseId: courseId,
+          playerId: player.id,
+        });
+        if (!validatedFields.success) {
+          return { error: "Error creating Scorecard." };
+        }
+        return await prisma.scorecard.create({
+          data: {
+            courseId: parseInt(courseId),
+            playerId: player.id,
+            score: scores[player.id].reduce(
+              (sum: number, score: number) => sum + score,
+              0,
+            ),
+            HoleScore: {
+              create: scores[player.id].map((score: number, index: number) => ({
+                holeNumber: index + 1,
+                score: score,
+              })),
+            },
+          },
+          include: {
+            HoleScore: true,
+          },
+        });
+      }),
+    );
+
+    revalidatePath(`/courses/${courseId}`);
+    return { scorecards: createdScorecards, success: true };
+  } catch (e: any) {
+    console.error(e);
+    return { error: "Error: Failed to create scorecards" };
+  }
+}
+
 export async function createCourse(prevState: any, formData: FormData) {
   const validatedFields = CourseSchema.safeParse({
     name: formData.get("name"),

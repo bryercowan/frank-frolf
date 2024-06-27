@@ -23,7 +23,7 @@ export default function RootLayout({
           <div>
             <div className="w-full mx-auto">
               <div className="items-center">
-                <h2 className="py-5 px-3 text-center text-gray-300">
+                <h2 className="py-5 px-3 text-center text-2xl text-gray-300">
                   Frank&apos;s Frolf Tracker
                 </h2>
               </div>

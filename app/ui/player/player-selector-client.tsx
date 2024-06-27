@@ -10,7 +10,13 @@ interface OptionType {
   label: string;
 }
 
-export default function PlayerSelector({ players }: { players: Player[] }) {
+export default function PlayerSelector({
+  players,
+  courseId,
+}: {
+  players: Player[];
+  courseId: number;
+}) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const [options, setOptions] = useState<OptionType[]>([]);
@@ -37,6 +43,8 @@ export default function PlayerSelector({ players }: { players: Player[] }) {
     }
   };
 
+  const handleClick = () => {};
+
   return (
     <div className="relative">
       <Select
@@ -46,13 +54,17 @@ export default function PlayerSelector({ players }: { players: Player[] }) {
         classNamePrefix="select"
         onChange={handleChange}
       />
-      <button
-        disabled={!Boolean(selectedOptions.length)}
-        onClick={() => console.log(selectedOptions)}
-        className="mt-6 w-full bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      <Link
+        href={`/courses/${courseId}/scorecard?players=${selectedOptions}`}
+        passHref
       >
-        Start!
-      </button>
+        <button
+          disabled={!Boolean(selectedOptions.length)}
+          className="mt-6 w-full bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Start!
+        </button>
+      </Link>
     </div>
   );
 }
