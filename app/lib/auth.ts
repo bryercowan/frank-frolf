@@ -79,4 +79,7 @@ export const authOptions = {
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  options: {
+    secure: process.env.NODE_ENV === "production",
+  },
 };
