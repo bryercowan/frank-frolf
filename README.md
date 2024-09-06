@@ -1,8 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frank Frolf Score Tracker
+
+This project is a frolf score tracking application, created for a friend(FRANK!!!!) to track his frolf. You can access the production version [here](https://frank-frolf.vercel.app/).
+
+## About This Project
+
+This project serves mostly learning this stack as I don't get to use it much in my day-to-day work. I'm using this project to learn Next.js, Prisma, and PostgreSQL. I also 
+wanted to use as much new next.js features as possible, rather than bog it down with functionality or looks
+
+- Next.js 14
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel
+- Prisma
+- PostgreSQL
+- Zod
+- next-auth (magic link)
 
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +31,25 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open http://localhost:3000 with your browser to see the result.
 
 ## Learn More
+To learn more about Next.js, check out the Next.js Documentation or try the Learn Next.js tutorial.
 
-To learn more about Next.js, take a look at the following resources:
+## FAQ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Q: Isn't Next.js overkill for this project?
+**A:** Yes, it probably is. I chose to use Next.js because I wanted to learn it and gain hands-on experience with it since its used so much.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Q: Why does the site look... like that?
+**A:** I wanted frank's eyes to hurt after a frolf session :)
 
-## Deploy on Vercel
+### Q: How can I get whitelisted to check out the production version?
+**A:** idk why you would but email me at email@bryercowan.com.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Q: Why are you whitelisting?
+**A:** protect the db from the world. I don't want to wake up to a billion dollar charge from vercel...
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Contributions
+While this is primarily a personal learning project, feedback and suggestions are always welcome!
