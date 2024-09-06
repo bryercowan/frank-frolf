@@ -4,8 +4,7 @@ This project is a frolf score tracking application, created for a friend(FRANK!!
 
 ## About This Project
 
-This project serves mostly learning this stack as I don't get to use it much in my day-to-day work. I'm using this project to learn Next.js, Prisma, and PostgreSQL. I also 
-wanted to use as much new next.js features as possible, rather than bog it down with functionality or looks
+This project serves mostly learning Next.js, I wanted to use as much new next.js features as possible, so you might see some non-efficient code.... :)
 
 - Next.js 14
 - React
