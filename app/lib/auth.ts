@@ -70,7 +70,6 @@ export const authOptions = {
       const whitelistedEmail = await prisma.whitelistedEmail.findUnique({
         where: { email: emailAddress },
       });
-      console.log("HERE", whitelistedEmail);
       if (whitelistedEmail) {
         return true;
       } else {

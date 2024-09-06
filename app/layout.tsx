@@ -19,6 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Toaster />
         <div className="flex h-screen flex-col md:overflow-hidden bg-gradient-to-r from-green-500 to-blue-500">
           <header className="flex justify-between items-center p-5 bg-gradient-to-r from-blue-500 to-green-500">
