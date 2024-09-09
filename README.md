@@ -37,9 +37,6 @@ To learn more about Next.js, check out the Next.js Documentation or try the Lear
 
 ## FAQ
 
-### Q: Isn't Next.js overkill for this project?
-**A:** Yes, it probably is. I chose to use Next.js because I wanted to learn it and gain hands-on experience with it since its used so much.
-
 ### Q: Why does the site look... like that?
 **A:** I wanted frank's eyes to hurt after a frolf session :)
 
