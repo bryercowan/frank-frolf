@@ -49,3 +49,5 @@ To learn more about Next.js, check out the Next.js Documentation or try the Lear
 
 ### Contributions
 While this is primarily a personal learning project, feedback and suggestions are always welcome!
+
+
